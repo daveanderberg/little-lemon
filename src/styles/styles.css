@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text');
+
+html *
+{
+    font-size: 1em;
+    font-family: 'Karla';
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    padding: 25px;
+    align-items: center;
+    justify-content: center;
+}
+
+nav li {
+    display: inline;
+    margin: 0 0 0 20px;
+}
+
+header {
+    background-color: #495E57;
+    color: #EDEFEE;
+}
+
+h1 {
+    font-family: 'Markazi Text';
+    font-size: 64pt;
+    font-weight: 400;
+    color: #F4CE14;
+}
+
+h2 {
+    font-family: 'Markazi Text';
+    font-size: 40pt;
+    font-weight: 300;
+    margin-top: -32px;
+}
+
+.callOutText {
+    font-size: 18pt;
+    font-weight: 400;
+}
+
+header p {
+    margin-top: 2%;
+}
+
+.headerDiv {
+    display:flex;
+    margin: 0 auto;
+    width: 80%;
+    min-width: 800px;
+    max-width: 1440px;
+}
+
+.headerDiv div {
+    margin: 2% 200px 2% 0;
+}

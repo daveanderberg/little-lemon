@@ -28,7 +28,37 @@ nav {
 
 nav li {
     display: inline;
-    margin: 0 0 0 20px;
+    /*margin: 0 0 0 20px;*/
+}
+
+nav li a:link {
+    color: #333;
+    text-decoration: none;
+    background-color: none;
+    padding: 10px 20px;
+}
+
+nav li a:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    color: #EDEFEE;
+    background-color: #495E57;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+nav li a:active {
+    color:#F4CE14;
+    background-color: #495E57;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+nav li a.active {
+    text-decoration: underline;
 }
 
 header {

@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+import { handleAHashClick } from '../utitilies';
 import llFooterLogo from '../assets/llFooterLogo.png';
 import facebookLogo from '../assets/facebookLogo.png';
 import instagramLogo from '../assets/instagramLogo.png';
@@ -16,12 +18,12 @@ function Footer() {
                 <div>
                     <h4>Doormat Navigation</h4>
                     <ul>
-                        <li><a>Home</a></li>
-                        <li><a>About</a></li>
-                        <li><a>Menu</a></li>
-                        <li><a>Reservations</a></li>
-                        <li><a>Order Online</a></li>
-                        <li><a>Login</a></li>
+                        <li><NavLink to='/'>Home</NavLink></li>
+                        <li><a onClick={handleAHashClick('about')} href='#about'>About</a></li>
+                        <li><NavLink to='/menu'>Menu</NavLink></li>
+                        <li><NavLink to='/reservations'>Reservations</NavLink></li>
+                        <li><NavLink to='/order'>Order Online</NavLink></li>
+                        <li><NavLink to='/login'>Login</NavLink></li>
                     </ul>
                 </div>
                 <div>

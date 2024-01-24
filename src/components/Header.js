@@ -20,7 +20,7 @@ function Header() {
                     <button className='yellowButton' id='reserveTableButton'>Reserve a Table</button>
                 </div>
                 <div className="headerImageDiv">
-                    <img src={llHeaderImage} style={imgStyle} alt="image of food" />
+                    <img src={llHeaderImage} style={imgStyle} alt="food" />
                 </div>
             </div>
         </header>

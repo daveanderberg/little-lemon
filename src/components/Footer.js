@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
-import { handleAHashClick } from '../utitilies';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import llFooterLogo from '../assets/llFooterLogo.png';
 import facebookLogo from '../assets/facebookLogo.png';
 import instagramLogo from '../assets/instagramLogo.png';
@@ -14,16 +14,16 @@ function Footer() {
     return (
         <footer>
             <div>
-                <img src={llFooterLogo} style={imgStyle} />
+                <img src={llFooterLogo} style={imgStyle} alt='Little Lemon footer logo' />
                 <div>
                     <h4>Doormat Navigation</h4>
                     <ul>
-                        <li><NavLink to='/'>Home</NavLink></li>
-                        <li><a onClick={handleAHashClick('about')} href='#about'>About</a></li>
-                        <li><NavLink to='/menu'>Menu</NavLink></li>
-                        <li><NavLink to='/reservations'>Reservations</NavLink></li>
-                        <li><NavLink to='/order'>Order Online</NavLink></li>
-                        <li><NavLink to='/login'>Login</NavLink></li>
+                        <li><Link to='/'>Home</Link></li>
+                        <li><HashLink smooth to='/#about'>About</HashLink></li>
+                        <li><Link to='/menu'>Menu</Link></li>
+                        <li><Link to='/reservations'>Reservations</Link></li>
+                        <li><Link to='/order'>Order Online</Link></li>
+                        <li><Link to='/login'>Login</Link></li>
                     </ul>
                 </div>
                 <div>

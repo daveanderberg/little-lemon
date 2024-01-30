@@ -1,6 +1,9 @@
 function Menu() {
     return (
-        <h2>Coming Soon!</h2>
+        <main>
+            <h3>Menu</h3>
+            <p>Coming Soon!</p>
+        </main>
     );
 }
 

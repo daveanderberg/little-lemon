@@ -1,8 +1,14 @@
-function Reservations() {
+
+import BookingForm from '../components/BookingForm';
+
+
+function Reservations({onSubmit, availableTimes, dispatch, setFormData}) {
+    
+
     return (
-        <>
-            <h3>Reservations</h3>
-        </>
+        <main>
+            <BookingForm onSubmit={onSubmit} availableTimes={availableTimes} dispatch={dispatch} setFormData={setFormData} />
+        </main>
     );
 }
 

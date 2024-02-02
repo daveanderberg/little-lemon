@@ -16,7 +16,7 @@ function Header() {
             <div className="headerDiv">
                 <div className="headerTextColumn">
                     <h1>Little Lemon</h1>
-                    <h2>Chicago</h2>
+                    <h2 className="sub">Chicago</h2>
                     <p>
                         We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.
                     </p>

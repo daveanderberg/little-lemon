@@ -1,10 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Karla');
-@import url('https://fonts.googleapis.com/css2?family=Markazi+Text');
+@import url("https://fonts.googleapis.com/css?family=Karla");
+@import url("https://fonts.googleapis.com/css2?family=Markazi+Text");
 
-html *
-{
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html * {
     font-size: 1em;
-    font-family: 'Karla';
+    font-family: "Karla";
     margin: 0;
 }
 
@@ -12,7 +17,6 @@ html *
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #EDEFEE;
 }
 
 main {
@@ -45,15 +49,15 @@ nav li a:visited {
 }
 
 nav li a:hover {
-    color: #EDEFEE;
-    background-color: #495E57;
+    color: #edefee;
+    background-color: #495e57;
     text-decoration: none;
     border-radius: 8px;
 }
 
 nav li a:active {
-    color:#F4CE14;
-    background-color: #495E57;
+    color: #f4ce14;
+    background-color: #495e57;
     text-decoration: none;
     border-radius: 8px;
 }
@@ -63,27 +67,37 @@ nav li a.active {
 }
 
 header {
-    background-color: #495E57;
-    color: #EDEFEE;
+    background-color: #495e57;
+    color: #edefee;
 }
 
 h1 {
-    font-family: 'Markazi Text';
+    font-family: "Markazi Text";
     font-size: 64pt;
     font-weight: 400;
 }
 
 header h1 {
-    color: #F4CE14;
+    color: #f4ce14;
     line-height: 44pt;
     margin-top: 2rem;
 }
 
 h2 {
-    font-family: 'Markazi Text';
+    font-family: "Markazi Text";
     font-size: 40pt;
     font-weight: 300;
+}
+
+h2 .sub {
     margin-top: -1.1rem;
+}
+
+h3 {
+    color: #495e57;
+    font-weight: bolder;
+    font-size: 1.25rem;
+    margin: 1.25rem 0;
 }
 
 .callOutText {
@@ -99,15 +113,57 @@ header p {
 .headerDiv {
     display: grid;
     margin: 0 auto;
-    min-width:480px;
+    min-width: 480px;
     max-width: 800px;
     grid-template-columns: 1fr 20rem;
-    grid-template-areas: 
-        'header image'
-        'subheader image'
-        'blurb image'
-        'button image'
-    ;
+    grid-template-areas:
+        "header image"
+        "subheader image"
+        "blurb image"
+        "button image";
+}
+
+.resBG {
+    background-image: url(../assets/restaurant.jpg);
+    background-repeat: no-repeat;
+    background-position: center 65%;
+    min-height: 176px;
+    color: #495e57;
+}
+
+.backButton {
+    
+    height: 40px;
+    width: 40px;
+    display: block;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 20px 0px;
+    background: #495e57;
+    border: 2px solid #edefee;
+    color: #edefee;
+}
+
+.backButton:hover {
+    background: #edefee;
+    color: #495e57;
+    border: 2px solid #495e57;
+}
+
+.backButton:active {
+    
+    background: #edefee;
+    border: 2px solid #f4ce14;
+    color: #495e57;
+}
+
+.backButton:disabled {
+    background: #D9D9D9;
+    border: 2px solid #edefee;
+    color: #edefee;
+    cursor: default;
 }
 
 .headerTextColumn {
@@ -119,7 +175,7 @@ header p {
     height: 20rem;
     margin: 20px 0;
     overflow: hidden;
-    grid-area: 'image';
+    grid-area: "image";
 }
 
 #reserveTableButton {
@@ -128,18 +184,25 @@ header p {
 
 .yellowButton {
     border-radius: 8px;
-    border: 0px;
+    border: 1px #f4ce14 solid;
     padding: 10px 40px;
-    background-color: #F4CE14;
+    background-color: #f4ce14;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
 }
 
 .yellowButton:hover {
-    background-color: #495E57;
-    color: #EDEFEE;
-    border: 1px #EDEFEE solid;
+    background-color: #495e57;
+    color: #edefee;
+    border: 1px #edefee solid;
+}
+
+.yellowButton:disabled {
+    background: #D9D9D9;
+    border: 2px solid #edefee;
+    color: #edefee;
+    cursor: default;
 }
 
 main {
@@ -148,14 +211,14 @@ main {
 }
 
 footer {
-    background-color: #495E57;
-    color:#EDEFEE;
+    background-color: #495e57;
+    color: #edefee;
     padding-top: 40px;
     padding-bottom: 40px;
     margin-top: auto;
 }
 
-footer > div {
+footer>div {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -174,19 +237,19 @@ footer h4 {
 }
 
 footer a:link {
-    color: #EDEFEE;
+    color: #edefee;
 }
 
 footer a:visited {
-    color: #EDEFEE;
+    color: #edefee;
 }
 
 footer a:hover {
-    color: #F4CE14;
+    color: #f4ce14;
 }
 
 footer a:active {
-    color: #F4CE14;
+    color: #f4ce14;
 }
 
 footer a img {
@@ -198,4 +261,76 @@ footer a img {
 
 footer a:hover img {
     filter: invert(25%) sepia(98%) saturate(1375%) hue-rotate(352deg) brightness(106%) contrast(91%);
+}
+
+.formStyle {
+    display: grid;
+    width: 18.5rem;
+    gap: 20px;
+    padding: 2rem 0;
+}
+
+.formField {
+    display: flex;
+    flex-direction: column;
+}
+
+.formField input,
+.formField textarea {
+    border: #D9D9D9 solid 1px;
+    border-radius: 8px;
+    font-family: "Karla";
+    padding: 8px 20px;
+    background-color: white;
+    width: 100%;
+}
+
+.formField input[type="date"] {
+    padding: 8px 12px 8px 20px;
+}
+
+.formField textarea {
+    resize: none;
+}
+
+select {
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+    grid-area: select;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.formSelect {
+    width: 100%;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+    padding: 8px 20px;
+    display: grid;
+    grid-template-areas: "select";
+    align-items: center;
+    position: relative;
+}
+
+.formCheckBox input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.error {
+    color: red;
+    max-width: 65ch;
+    padding: 0.5rem 0;
+    text-wrap: wrap;
 }

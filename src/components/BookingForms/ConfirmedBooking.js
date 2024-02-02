@@ -1,4 +1,4 @@
-function ConfirmedBooking() {
+function ConfirmedBooking({formik}) {
     return (
         <main>
             <h3>Reservation Confirmed</h3>

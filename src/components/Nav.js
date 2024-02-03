@@ -1,14 +1,14 @@
-import { NavLink } from "react-router-dom";
-import { NavHashLink } from "react-router-hash-link";
+import { NavLink, Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import llLogo from '../assets/LLLogo.png';
 
 function Nav() {
     return (
         <nav>
-            <img src={llLogo} alt='Little Lemon Logo' style={{height: '70px'}}/>
+            <Link to="/"><img src={llLogo} alt='Little Lemon Logo' style={{height: '70px'}}/></Link>
             <ul>
                 <li><NavLink to="/">Home</NavLink></li>
-                <li><NavHashLink smooth to="/#about">About</NavHashLink></li>
+                <li><HashLink smooth to="/#about">About</HashLink></li>
                 <li><NavLink to="/menu">Menu</NavLink></li>
                 <li><NavLink to="/reservations">Reservations</NavLink></li>
                 <li><NavLink to="/order">Order Online</NavLink></li>

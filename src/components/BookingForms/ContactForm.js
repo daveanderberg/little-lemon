@@ -1,14 +1,7 @@
-import { useState } from 'react';
-import FormField from '../FormField';
-import CheckBoxFormField from '../CheckBoxFormField';
+import FormField from './FormField';
+import CheckBoxFormField from './CheckBoxFormField';
 
 function ContactForm({ formik }) {
-    const [firstName, setFirstName] = useState();
-    const [lastName, setLastName] = useState();
-    const [email, setEmail] = useState();
-    const [phone, setPhone] = useState();
-    const [isOkToText, setIsOkToText] = useState(false);
-    
     return (
         <>
             <section>

@@ -1,17 +1,32 @@
 import * as Yup from 'yup';
-import { useEffect, useRef, useState } from 'react';
-import { fetchAPI } from '../utils/fakeAPI.js';
-import { Formik, Form } from 'formik';
-import BookingInfo from './BookingForms/BookingInfo.js';
-import ContactForm from './BookingForms/ContactForm.js';
-import ConfirmedBooking from './BookingForms/ConfirmedBooking.js'
+import { useEffect, useState } from 'react';
+import { fetchAPI } from '../../utils/fakeAPI.js';
 import { useNavigate } from 'react-router-dom';
+import { Formik, Form } from 'formik';
+import BookingInfo from './BookingInfo.js';
+import ContactForm from './ContactForm.js';
+import ConfirmedBooking from './ConfirmedBooking.js'
 
-function BookingForm({ availableTimes, dispatch, submit, page, setPage }) {
+const FormHeader = ({page}) => {
+    let formHeader = "Reservation Details";
+    if (page === 1)
+        formHeader = "Contact Details";
+    else if (page === 2)
+        formHeader = "Reservation Confirmation";
+
+    return (<h2>{formHeader}</h2>);
+}
+
+const SubmitButton = ({page, formik}) => {
+    let submitText = page === 1 ? "Submit Reservation" : "Next";
+
+    return (<button className="yellowButton" disabled={!(formik.dirty && formik.isValid)}>{submitText}</button>);
+}
+
+function BookingForm({ availableTimes, dispatch, submit }) {
     const navigate = useNavigate();
     const [date, setDate] = useState(new Date());
-    const [submitText, setSubmitText] = useState("Next");
-    const formikRef = useRef();
+    const [page, setPage] = useState(0);
 
     const occasions = ['None', 'Birthday', 'Engagement', 'Anniversary', 'Other'];
     const tableTypes = ['Indoor', 'Booth', 'Outside'];
@@ -19,7 +34,7 @@ function BookingForm({ availableTimes, dispatch, submit, page, setPage }) {
 
     const infoSchema = Yup.object().shape({
         date: Yup.date().min(new Date(), "Cannot book a reservation before today.").required("Required"), //.toJSON().slice(0, 10)
-        time: Yup.string().oneOf([...availableTimes].slice(1), "Please select a time from the list.").required("Required"),
+        time: Yup.string().required("Required").notOneOf([availableTimes[0]], "Please select a time from the list."),
         partySize: Yup.number().min(1, "You must have at least 1 person in the party.").max(10, "You cannot have more than 10 people in a party.").required("Required"),
         occasion: Yup.string().oneOf([...occasions]).required("Required"),
     });
@@ -31,8 +46,6 @@ function BookingForm({ availableTimes, dispatch, submit, page, setPage }) {
         phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
     });
 
-    const [validationSchema, setValidationSchema] = useState(infoSchema);
-
     useEffect(() => {
         const fetchTimes = (newDate) => {
             // using spoofed api since real one is not up
@@ -43,19 +56,10 @@ function BookingForm({ availableTimes, dispatch, submit, page, setPage }) {
         fetchTimes(date);
     }, [date, dispatch]);
 
-    useEffect(() => {
-        if (page === 0) {
-            setValidationSchema(infoSchema);
-            setSubmitText("Next");
-        }
-        else if (page === 1) {
-            setValidationSchema(contactSchema);
-            setSubmitText("Submit Reservation");
-        }
-    }, [page, contactSchema, infoSchema])
-
     const handleSubmit = (values) => {
-        if (page < 2) setPage(page + 1);
+        if (page < 2)
+            setPage(page + 1);
+        
         else {
             const formData = {
                 date: values.date,
@@ -77,9 +81,12 @@ function BookingForm({ availableTimes, dispatch, submit, page, setPage }) {
         setDate(e.target.value);
     }
 
+    const backClick = (e) => {
+        setPage(page > 0 ? page - 1 : 0);
+    }
+
     return (
         <Formik
-            innerRef={formikRef}
             initialValues={{
                 date: '',
                 time: '',
@@ -93,17 +100,23 @@ function BookingForm({ availableTimes, dispatch, submit, page, setPage }) {
                 phone: '',
                 isOkToText: false,
             }}
-            validationSchema={validationSchema}
+            validationSchema={page === 0 ? infoSchema : contactSchema}
             onSubmit={handleSubmit}>
             {(formik) => {
                 return (
-                    <Form className='formStyle'>
-                        {page === 0 && <BookingInfo availableTimes={availableTimes} dateChanged={dateChanged} occasions={occasions} tableTypes={tableTypes} />}
-                        {page === 1 && <ContactForm formik={formik} />}
-                        {page === 2 && <ConfirmedBooking formik={formik} />}
-                        {page !== 2 && <button className="yellowButton" disabled={!(formik.dirty && formik.isValid)}>{submitText}</button>}
-                        {page === 2 && <button className='yellowButton' type='button' onClick={() => navigate("/")}>Return to Home</button>}
-                    </Form>
+                    <>
+                        <span className='formHeader'>
+                            <button className="backButton" title='Go back' onClick={backClick} disabled={page !== 1}>&lt;</button>
+                            <FormHeader page={page} />
+                        </span>
+                        <Form className='formStyle'>
+                            {page === 0 && <BookingInfo availableTimes={availableTimes} dateChanged={dateChanged} occasions={occasions} tableTypes={tableTypes} />}
+                            {page === 1 && <ContactForm formik={formik} />}
+                            {page === 2 && <ConfirmedBooking formik={formik} />}
+                            {page !== 2 && <SubmitButton page={page} formik={formik} />}
+                            {page === 2 && <button className='yellowButton' type='button' onClick={() => navigate("/")}>Return to Home</button>}
+                        </Form>
+                    </>
                 )
             }}
         </Formik>

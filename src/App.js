@@ -9,7 +9,6 @@ import NoPage from './pages/NoPage';
 import BookingPage from "./pages/BookingPage";
 import './styles/styles.css'
 
-
 window.onbeforeunload = () => {
   localStorage.clear();
 }

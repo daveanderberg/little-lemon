@@ -1,6 +1,6 @@
-import FormField from "../FormField";
-import SelectFormField from "../SelectFormField";
-import TextAreaFormField from "../TextAreaFormField";
+import FormField from "./FormField";
+import SelectFormField from "./SelectFormField";
+import TextAreaFormField from "./TextAreaFormField";
 
 function BookingInfo({availableTimes, dateChanged, occasions, tableTypes}) {
     const timesOptionsList = availableTimes.map((t) => {

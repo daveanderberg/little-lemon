@@ -57,10 +57,9 @@ function BookingForm({ availableTimes, dispatch, submit }) {
     }, [date, dispatch]);
 
     const handleSubmit = (values) => {
-        if (page < 2)
+        if (page < 2) {
             setPage(page + 1);
-        
-        else {
+        } else {
             const formData = {
                 date: values.date,
                 time: values.time,

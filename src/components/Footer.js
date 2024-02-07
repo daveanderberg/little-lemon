@@ -1,3 +1,4 @@
+import '../styles/footer.css';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import llFooterLogo from '../assets/llFooterLogo.png';
@@ -18,7 +19,7 @@ function Footer() {
                 <div>
                     <h4>Doormat Navigation</h4>
                     <ul>
-                        <li><Link to='/'>Home</Link></li>
+                        <li><HashLink smooth to='/#nav'>Home</HashLink></li>
                         <li><HashLink smooth to='/#about'>About</HashLink></li>
                         <li><Link to='/menu'>Menu</Link></li>
                         <li><Link to='/reservations'>Reservations</Link></li>

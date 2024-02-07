@@ -1,0 +1,84 @@
+/***=========================================== Forms ===========================================***/
+
+.formStyle {
+    display: grid;
+    width: 18.5rem;
+    gap: 20px;
+    padding: 2rem 0;
+}
+
+.formField {
+    display: flex;
+    flex-direction: column;
+}
+
+.formField input,
+.formField textarea {
+    border: #d9d9d9 solid 1px;
+    border-radius: 8px;
+    font-family: "Karla";
+    padding: 8px 20px;
+    background-color: white;
+    width: 100%;
+}
+
+.formField input[type="date"] {
+    padding: 8px 12px 8px 20px;
+}
+
+.formField textarea {
+    resize: none;
+}
+
+select {
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+    grid-area: select;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.formSelect {
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+    padding: 8px 20px;
+    display: grid;
+    grid-template-areas: "select";
+    align-items: center;
+    position: relative;
+}
+
+.formCheckBox input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.formHeader {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.formHeader h3,
+.formHeader h4 {
+    display: inline-block;
+}
+
+.error {
+    color: red;
+    max-width: 65ch;
+    padding: 0.5rem 0;
+    text-wrap: wrap;
+}

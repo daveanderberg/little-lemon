@@ -1,0 +1,69 @@
+/*** Specials  ***/
+
+.specialsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.125rem 0;
+}
+
+.specialsHeader h1 {
+  display: inline-block;
+}
+
+.specialCard {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 16px;
+  box-shadow: 2px 3px 5px #888;
+  padding-bottom: 20px;
+  height: 30rem;
+}
+
+.specialCard .blurb,
+.specialCard a,
+.specialCardTitle {
+  padding: 8px 20px;
+}
+
+.specialCard a {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.specialCard a {
+  margin-top: auto;
+}
+
+.specialCard a img {
+  height: 1.25rem;
+}
+
+.specialCard .blurb {
+  align-self: stretch;
+  color: #495e57;
+}
+
+.specialCardTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  margin-top: 1rem;
+}
+
+.specialCardTitle h5 {
+  display: inline-block;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.specialsList {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}

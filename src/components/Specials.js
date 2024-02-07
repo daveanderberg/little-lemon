@@ -1,3 +1,4 @@
+import '../styles/specials.css'
 import SpecialCard from "./SpecialCard";
 import { useNavigate } from "react-router-dom";
 import saladImage from "../assets/saladImage.jpg";

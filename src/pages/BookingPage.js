@@ -1,3 +1,4 @@
+import '../styles/forms.css'
 import BookingForm from '../components/BookingForms/BookingForm';
 import { fetchAPI, submitAPI } from '../utils/fakeAPI';
 import { useReducer } from 'react';

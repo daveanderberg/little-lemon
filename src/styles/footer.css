@@ -1,0 +1,54 @@
+/***=========================================== Footer ===========================================***/
+
+footer {
+    background-color: #495e57;
+    color: #edefee;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: auto;
+}
+
+footer>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer h4 {
+    margin-bottom: 8px;
+    text-wrap: wrap;
+}
+
+footer a:link {
+    color: #edefee;
+}
+
+footer a:visited {
+    color: #edefee;
+}
+
+footer a:hover {
+    color: #f4ce14;
+}
+
+footer a:active {
+    color: #f4ce14;
+}
+
+footer a img {
+    height: 24px;
+    width: 24px;
+    margin: 10px 20px 10px 0px;
+    display: inline;
+}
+
+footer a:hover img {
+    filter: invert(25%) sepia(98%) saturate(1375%) hue-rotate(352deg) brightness(106%) contrast(91%);
+}

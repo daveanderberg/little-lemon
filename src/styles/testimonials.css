@@ -1,0 +1,36 @@
+/***=========================================== Testimonials ===========================================***/
+
+.testimonials h2 {
+    margin-top: 6rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.testimonials>div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.testimonialCard {
+    width: 24%;
+    padding: 10px 20px 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 2px 3px 5px #888;
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonialCard>div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 8px 0;
+}
+
+.testimonialCard>blockquote {
+    color: #495e57;
+    text-align: center;
+    margin-top: 10px;
+}

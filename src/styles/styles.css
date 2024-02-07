@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css?family=Karla");
+@import url("https://fonts.googleapis.com/css2?family=Markazi+Text");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html * {
+  font-size: 1em;
+  font-family: "Karla";
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #edefee;
+  color: #333;
+}
+
+main {
+  flex: 1;
+}
+
+nav {
+  display: flex;
+  padding: 25px;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+nav li {
+  display: inline;
+  /*margin: 0 0 0 20px;*/
+}
+
+nav li a:link {
+  color: #333;
+  text-decoration: none;
+  background-color: none;
+  padding: 10px 20px;
+}
+
+nav li a:visited {
+  color: #333;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  color: #edefee;
+  background-color: #495e57;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+nav li a:active {
+  color: #f4ce14;
+  background-color: #495e57;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+nav li a.active {
+  text-decoration: underline;
+}
+
+header {
+  background-color: #495e57;
+  color: #edefee;
+}
+
+h1 {
+  font-family: "Markazi Text";
+  font-size: 64pt;
+  font-weight: 400;
+}
+
+header h1,
+#about h1 {
+  color: #f4ce14;
+  line-height: 44pt;
+  margin-top: 2rem;
+}
+
+h2 {
+  font-family: "Markazi Text";
+  font-size: 40pt;
+  font-weight: 300;
+}
+
+h2 .sub {
+  margin-top: -1.1rem;
+}
+
+h3 {
+  color: #495e57;
+  font-weight: bolder;
+  font-size: 1.25rem;
+  margin: 1.25rem 0;
+}
+
+.callOutText {
+  font-size: 18pt;
+  font-weight: 400;
+}
+
+header p {
+  margin-top: 2%;
+  margin-right: 30%;
+}
+
+.headerDiv {
+  display: grid;
+  margin: 0 auto;
+  min-width: 480px;
+  max-width: 800px;
+  grid-template-columns: 1fr 20rem;
+  grid-template-areas:
+    "header image"
+    "subheader image"
+    "blurb image"
+    "button image";
+}
+
+.resBG {
+  background-image: url(../assets/restaurant.jpg);
+  background-repeat: no-repeat;
+  background-position: center 65%;
+  min-height: 176px;
+  color: #495e57;
+}
+
+.backButton {
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 20px 0px;
+  background: #495e57;
+  border: 2px solid #edefee;
+  color: #edefee;
+}
+
+.backButton:hover {
+  background: #edefee;
+  color: #495e57;
+  border: 2px solid #495e57;
+}
+
+.backButton:active {
+  background: #edefee;
+  border: 2px solid #f4ce14;
+  color: #495e57;
+}
+
+.backButton:disabled {
+  background: #d9d9d9;
+  border: 2px solid #edefee;
+  color: #edefee;
+  cursor: default;
+}
+
+.headerTextColumn {
+  margin: 20px 40px 20px 0;
+}
+
+.headerImageDiv {
+  width: 20rem;
+  height: 20rem;
+  margin: 20px 0;
+  overflow: hidden;
+  grid-area: "image";
+}
+
+#reserveTableButton {
+  margin: 40px 0 20px;
+}
+
+.yellowButton {
+  border-radius: 8px;
+  border: 1px #f4ce14 solid;
+  padding: 10px 40px;
+  background-color: #f4ce14;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.yellowButton:hover {
+  background-color: #495e57;
+  color: #edefee;
+  border: 1px #edefee solid;
+}
+
+.yellowButton:disabled {
+  background: #d9d9d9;
+  border: 2px solid #edefee;
+  color: #edefee;
+  cursor: default;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+}

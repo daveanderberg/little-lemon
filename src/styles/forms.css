@@ -92,6 +92,7 @@ select::-ms-expand {
 .centered {
     margin-left: auto;
     margin-right: auto;
+    width: auto;
 }
 
 .disabled {
@@ -134,7 +135,35 @@ select::-ms-expand {
 .resHeader h2 {
     margin: 26px 0;
     grid-template-areas: "header image";
-  }
+}
+
+.fieldBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.field {
+    font-weight: bolder;
+    margin-right: 0.5rem;
+}
+
+.resConfirmDetails {
+    display: grid;
+    grid-template-areas: 'fields image';
+    padding: 1.5rem 2rem ;
+    border-radius: 16px;
+    background: #495e57;
+    color: #edefee;
+    gap: 0.7rem;
+    margin-bottom: 40px;
+    min-width: 360px;
+}
+
+.resConfirmDetails>div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
 
 /**** ============================ Form Animation Styles ============================  ****/
 .animRight-enter {

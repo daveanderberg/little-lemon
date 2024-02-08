@@ -6,11 +6,15 @@ import { CSSTransition } from  'react-transition-group';
 import BookingInfo from './BookingInfo.js';
 import ContactForm from './ContactForm.js';
 import ConfirmedBooking from './ConfirmedBooking.js'
+import Spinner from '../Spinner.js';
 
 function BookingForm({ availableTimes, dispatch, submit }) {
     const [date, setDate] = useState(new Date());
     const [page, setPage] = useState(0);
     const [isContactIn, setIsContactIn] = useState(false);
+    const [wasSubmitSucessful, setWasSubmitSuccessful] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formData, setFormData] = useState();
 
     const occasions = ['None', 'Birthday', 'Engagement', 'Anniversary', 'Other'];
     const tableTypes = ['Indoor', 'Booth', 'Outside'];
@@ -40,14 +44,15 @@ function BookingForm({ availableTimes, dispatch, submit }) {
         fetchTimes(date);
     }, [date, dispatch]);
 
+    // used to trigger section transistions.
     useEffect(() => {
         if (page === 1) {
             setIsContactIn(true);
         } else setIsContactIn(false);
     }, [page, setIsContactIn])
 
-    const handleSubmit = (values) => {
-        if (page < 2) {
+    const handleSubmit = async (values) => {
+        if (page < 1) {
             setPage(page + 1);
         } else {
             const formData = {
@@ -61,8 +66,15 @@ function BookingForm({ availableTimes, dispatch, submit }) {
                 lastName: values.lastName,
                 email: values.email,
                 phone: values.phone,
+                isOkToText: values.isOkToText,
             }
-            submit(formData);
+            setIsSubmitting(true);
+            const result = await submit(formData)
+            if (result) {
+                setFormData(formData);
+                setWasSubmitSuccessful(result);
+            }
+            setPage(page + 1);
         }
     }
 
@@ -112,15 +124,11 @@ function BookingForm({ availableTimes, dispatch, submit }) {
                                     </div>
                                 </CSSTransition>
                             </div>
-                            <button
-                                className="yellowButton centered"
-                                style={{width: '300px'}}
-                                disabled={!(page < 2 && formik.dirty && formik.isValid)}>
-                                    {page === 1 ? "Submit Reservation" : "Next"}
-                                </button>
-                            </>
-                        }
-                        {page === 2 && <ConfirmedBooking formik={formik} />}
+                            <button className="yellowButton centered" style={{width: '300px'}} disabled={!(page < 2 && formik.dirty && formik.isValid) || isSubmitting}>
+                                {page === 1 ? "Submit Reservation" : "Next"}
+                            </button>{isSubmitting && <Spinner />}
+                        </>}
+                        {page === 2 && <ConfirmedBooking data={formData} wasSubmitSucessful={wasSubmitSucessful} />}
                     </Form>
                 )
             }}

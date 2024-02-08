@@ -96,7 +96,7 @@ function BookingForm({ availableTimes, dispatch, submit }) {
                 phone: '',
                 isOkToText: false,
             }}
-            validationSchema={page === 0 ? infoSchema : contactSchema}
+            validationSchema={ !isContactIn ? infoSchema : contactSchema }
             onSubmit={handleSubmit}>
             {(formik) => {
                 return (

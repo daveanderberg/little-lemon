@@ -1,24 +1,14 @@
 import FormField from './FormField';
 import CheckBoxFormField from './CheckBoxFormField';
 
-function ContactForm({ formik }) {
+function ContactForm({ isCurrent = true }) {
     return (
         <>
-            <section>
-                <h4>Reservation Details</h4>
-                <div><label>Date:</label> {formik.values.date}</div>
-                <div><label>Time:</label> {formik.values.time}</div>
-                <div><label>Size of Party:</label> {formik.values.partySize}</div>
-                <div><label>Occasion:</label> {formik.values.occasion}</div>
-                <div><label>TableType:</label> {formik.values.tableType}</div>
-                <div><label>Comments:</label> {formik.values.comments}</div>
-            </section>
-            <h3>Add contact information</h3>
-            <FormField name="firstName" type="text" label="First Name" />
-            <FormField name="lastName" type="text" label="Last Name" />
-            <FormField name="email" type="email" label="Email" />
-            <FormField name="phone" type="tel" label="Phone Number" />
-            <CheckBoxFormField name="isOkToText" label="Is Okay to Text" />
+            <FormField name="firstName" type="text" label="First Name" disabled={!isCurrent} />
+            <FormField name="lastName" type="text" label="Last Name" disabled={!isCurrent} />
+            <FormField name="email" type="email" label="Email" disabled={!isCurrent} />
+            <FormField name="phone" type="tel" label="Phone Number" disabled={!isCurrent} />
+            <CheckBoxFormField name="isOkToText" label="Is Okay to Text" disabled={!isCurrent} />
         </>
     );
 }

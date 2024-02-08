@@ -3,6 +3,7 @@ import BookingForm from '../components/BookingForms/BookingForm';
 import { fetchAPI, submitAPI } from '../utils/fakeAPI';
 import { useReducer } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
+import headerImage from '../assets/restaurant.jpg';
 
 function BookingPage() {
   const updateTimes = (state, action) => {
@@ -25,10 +26,26 @@ function BookingPage() {
     }
   }
 
+  const imgStyle = {
+    //borderRadius: "16px",
+    height: '116px',
+    width: '100%',
+    objectFit: 'cover',
+    margin: '0',
+  }
+
   return (
     <>
-      <header className="resBG">
-        <div className="headerDiv" />
+      <header>
+        <div className="headerDiv resHeader">
+          <div>
+            <h2>Book a Reservation</h2>
+            {/*<p>Please select from the options below to reserve a table.</p>*/}
+          </div>
+          {/*<div style={{height: 'auto', margin: '0', backgroundImage: `url(${headerImage})`}}>
+             <img src={headerImage} style={imgStyle} alt="restaurant seating" /> 
+          </div>*/}
+        </div>
       </header>
       <main style={{minWidth: '900px'}}>
         <BookingForm

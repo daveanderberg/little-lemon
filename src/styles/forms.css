@@ -1,8 +1,6 @@
-/***=========================================== Forms ===========================================***/
-
 .formStyle {
     display: grid;
-    width: 18.5rem;
+    /*width: 18.5rem;*/
     gap: 20px;
     padding: 2rem 0;
 }
@@ -20,6 +18,7 @@
     padding: 8px 20px;
     background-color: white;
     width: 100%;
+    min-height: 39px;
 }
 
 .formField input[type="date"] {
@@ -81,4 +80,108 @@ select::-ms-expand {
     max-width: 65ch;
     padding: 0.5rem 0;
     text-wrap: wrap;
+}
+
+.subForm {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 1.2rem;
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.disabled {
+    opacity: 65%;
+    pointer-events: none;
+}
+
+.backButton {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    background: #495e57;
+    border: 2px solid #edefee;
+    color: #edefee;
+}
+
+.backButton:hover {
+    background: #edefee;
+    color: #495e57;
+    border: 2px solid #495e57;
+}
+
+.backButton:active {
+    background: #edefee;
+    border: 2px solid #f4ce14;
+    color: #495e57;
+}
+
+.backButton:disabled {
+    background: #d9d9d9;
+    border: 2px solid #edefee;
+    color: #edefee;
+    cursor: default;
+}
+
+.resHeader h2 {
+    margin: 26px 0;
+    grid-template-areas: "header image";
+  }
+
+/**** ============================ Form Animation Styles ============================  ****/
+.animRight-enter {
+    opacity: 0;
+    transform: translateX(0);
+}
+
+.animRight-enter-active {
+    opacity: 1;
+    transform: translateX(170px);
+    transition: opacity 300ms, transform 300ms ease-out;
+}
+
+.animRight-enter-done {
+    opacity: 1;
+    transform: translateX(170px);
+}
+
+.animRight-exit {
+    opacity: 1;
+    transform: translateX(170px);
+}
+
+.animRight-exit-active {
+    opacity: 0;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms ease-in;
+}
+
+.animLeft-enter {
+    transform: translateX(0);
+}
+
+.animLeft-enter-active {
+    transform: translateX(-170px);
+    transition: transform 300ms ease-out;
+}
+
+.animLeft-enter-done {
+    transform: translateX(-170px);
+}
+
+.animLeft-exit {
+    transform: translateX(-170px);
+}
+
+.animLeft-exit-active {
+    transform: translateX(0);
+    transition: transform 300ms ease-in;
 }

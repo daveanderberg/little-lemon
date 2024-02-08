@@ -27,7 +27,7 @@ main {
 
 nav {
   display: flex;
-  padding: 25px;
+  padding: 10px 25px;
   align-items: center;
   justify-content: center;
   color: #333;
@@ -126,47 +126,6 @@ header p {
     "button image";
 }
 
-.resBG {
-  background-image: url(../assets/restaurant.jpg);
-  background-repeat: no-repeat;
-  background-position: center 65%;
-  min-height: 176px;
-  color: #495e57;
-}
-
-.backButton {
-  height: 40px;
-  width: 40px;
-  display: inline-block;
-  border-radius: 20px;
-  font-size: 1.3rem;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 20px 0px;
-  background: #495e57;
-  border: 2px solid #edefee;
-  color: #edefee;
-}
-
-.backButton:hover {
-  background: #edefee;
-  color: #495e57;
-  border: 2px solid #495e57;
-}
-
-.backButton:active {
-  background: #edefee;
-  border: 2px solid #f4ce14;
-  color: #495e57;
-}
-
-.backButton:disabled {
-  background: #d9d9d9;
-  border: 2px solid #edefee;
-  color: #edefee;
-  cursor: default;
-}
-
 .headerTextColumn {
   margin: 20px 40px 20px 0;
 }
@@ -177,6 +136,8 @@ header p {
   margin: 20px 0;
   overflow: hidden;
   grid-area: "image";
+  display: flex;
+  justify-content: flex-end;
 }
 
 #reserveTableButton {

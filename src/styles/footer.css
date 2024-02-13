@@ -52,3 +52,14 @@ footer a img {
 footer a:hover img {
     filter: invert(25%) sepia(98%) saturate(1375%) hue-rotate(352deg) brightness(106%) contrast(91%);
 }
+
+@media (max-width: 767px) {
+    footer {
+        padding-left: 20px;
+        padding-right: 20px;;
+    }
+
+    #footerLinks {
+        display: none;
+    }
+}

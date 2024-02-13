@@ -126,7 +126,8 @@ function BookingForm({ availableTimes, dispatch, submit }) {
                             </div>
                             <button className="yellowButton centered" style={{width: '300px'}} disabled={!(page < 2 && formik.dirty && formik.isValid) || isSubmitting}>
                                 {page === 1 ? "Submit Reservation" : "Next"}
-                            </button>{isSubmitting && <Spinner />}
+                            </button>
+                            {isSubmitting && <div><Spinner /></div>}
                         </>}
                         {page === 2 && <ConfirmedBooking data={formData} wasSubmitSucessful={wasSubmitSucessful} />}
                     </Form>

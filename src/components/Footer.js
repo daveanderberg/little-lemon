@@ -16,7 +16,7 @@ function Footer() {
         <footer>
             <div>
                 <img src={llFooterLogo} style={imgStyle} alt='Little Lemon footer logo' />
-                <div>
+                <div id="footerLinks">
                     <h4>Doormat Navigation</h4>
                     <ul>
                         <li><HashLink smooth to='/#nav'>Home</HashLink></li>

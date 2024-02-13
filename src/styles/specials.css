@@ -14,32 +14,35 @@
 .specialCard {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  max-width: 268px;
+  min-width: 200px;
+  width: 100%;
   background: white;
   border: 1px solid #d9d9d9;
   border-radius: 16px;
   box-shadow: 2px 3px 5px #888;
   padding-bottom: 20px;
-  height: 30rem;
+  /*height: 30rem;*/
+
 }
 
 .specialCard .blurb,
-.specialCard a,
+.specialCard a.specialsLink,
 .specialCardTitle {
   padding: 8px 20px;
 }
 
-.specialCard a {
+a.specialsLink {
   display: flex;
   align-items: center;
   gap: 0.25rem;
 }
 
-.specialCard a {
+a.specialsLink {
   margin-top: auto;
 }
 
-.specialCard a img {
+a.specialsLink img {
   height: 1.25rem;
 }
 
@@ -66,4 +69,113 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  flex: auto;
+  gap: 10px;
+}
+
+.cardImageDiv {
+  overflow: hidden;
+  height: 168px;
+  min-height: 168px;
+  border-radius: 16px 16px 0 0;
+  margin: 0;
+}
+
+.cardImage {
+  object-fit: cover;
+  width: 268px;
+  height: 168px;
+}
+
+.specialCard .price {
+  display: none;
+}
+
+#orderHeader {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .specialsList {
+    flex-direction: column;
+  }
+
+  .specialCard {
+    display: grid;
+    grid-template-areas:
+      "title title"
+      "blurb image"
+      "price image";
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 82px;
+    gap: 1rem;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    max-width: 100%;
+    height: min-content;
+    padding: 0 20px;
+  }
+
+  .cardImageDiv {
+    height: 82px;
+    max-height: 82px;
+    min-height: 82px;
+    width: 82px;
+    grid-area: image;
+    border-radius: 0;
+    grid-row: 2 / 4;
+  }
+
+  .cardImage {
+    height: 82px;
+    width: 82px;
+  }
+
+  .specialCard .blurb {
+    grid-area: blurb;
+    padding: 0;
+    max-width:  80vw;
+  }
+
+  .specialCard .blurb p{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: calc(85vw - 82px);
+    overflow: hidden;
+  }
+
+  #specialsHeader,
+  .specialCard .headerPrice,
+  a.specialsLink {
+    display: none;
+  }
+
+  .specialCard .price {
+    display: block;
+    color:#888;
+    font-weight: bold;
+    font-size: 1.25rem;
+    grid-area:price;
+  }
+
+  #orderHeader {
+    display: block;
+    text-wrap: nowrap;
+  }
+
+  .specialsHeader {
+    padding: 0 20px;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .specialCardTitle {
+    padding: 0;
+  }
 }

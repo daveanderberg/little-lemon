@@ -34,7 +34,8 @@ function Specials() {
     return (
         <section>
             <div className="specialsHeader">
-                <h2>This weeks Specials</h2>
+                <h2 id="specialsHeader">This weeks Specials</h2>
+                <h6 id="orderHeader">order for delivery!</h6>
                 <button className="yellowButton" onClick={() => navigate('/order')}>Online Menu</button>
             </div>
             <div className="specialsList">

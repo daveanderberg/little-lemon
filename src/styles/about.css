@@ -28,3 +28,21 @@
     top: 0;
     box-shadow: 2px 3px 5px #000;
 }
+
+@media (max-width: 767px) {
+    #about {
+        display: block;
+        min-height: min-content;
+        margin: 20px;
+        max-width: calc(100vw - 40px);
+    }
+
+    #about img {
+         display: none;
+    }
+
+    #about p {
+        max-width: 80vw;
+        margin-bottom: 32px;
+    }
+}

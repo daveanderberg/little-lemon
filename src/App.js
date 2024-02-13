@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Footer from './components/Footer';
 import Nav from './components/Nav';
 import Home from './pages/Home';
@@ -10,11 +11,14 @@ import BookingPage from "./pages/BookingPage";
 import Cart from "./pages/Cart"
 import './styles/styles.css'
 
-window.onbeforeunload = () => {
-  localStorage.clear();
-}
-
 function App() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Start at top of page
+    document.documentElement.scrollTo({ top: 0, left: 0, behavior: "instant", });
+  }, [pathname]);
+
   return (
     <>
       <Nav />

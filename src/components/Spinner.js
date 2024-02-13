@@ -1,9 +1,9 @@
 import '../styles/spinner.css'
 
-function Spinner() {
+function Spinner(props) {
 
     return (
-        <div className="lds-dual-ring" ></div>
+        <div className="lds-dual-ring" {...props} ></div>
     )
 }
 

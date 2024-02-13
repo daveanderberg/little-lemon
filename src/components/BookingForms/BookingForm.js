@@ -9,13 +9,6 @@ import ConfirmedBooking from './ConfirmedBooking.js'
 import Spinner from '../Spinner.js';
 
 function BookingForm({ availableTimes, dispatch, submit }) {
-    const [date, setDate] = useState(new Date());
-    const [page, setPage] = useState(0);
-    const [isContactIn, setIsContactIn] = useState(false);
-    const [wasSubmitSucessful, setWasSubmitSuccessful] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [formData, setFormData] = useState();
-
     const occasions = ['None', 'Birthday', 'Engagement', 'Anniversary', 'Other'];
     const tableTypes = ['Indoor', 'Booth', 'Outside'];
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -33,6 +26,13 @@ function BookingForm({ availableTimes, dispatch, submit }) {
         email: Yup.string().email("Invalid email.").required("Required"),
         phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
     });
+
+    const [date, setDate] = useState(new Date());
+    const [page, setPage] = useState(0);
+    const [isContactIn, setIsContactIn] = useState(false);
+    const [wasSubmitSucessful, setWasSubmitSuccessful] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formData, setFormData] = useState();
 
     useEffect(() => {
         const fetchTimes = (newDate) => {
@@ -79,7 +79,6 @@ function BookingForm({ availableTimes, dispatch, submit }) {
     }
 
     const dateChanged = (e) => setDate(e.target.value);
-    const backClick = (e) => setPage(page > 0 ? page - 1 : 0);
 
     return (
         <Formik
@@ -99,6 +98,11 @@ function BookingForm({ availableTimes, dispatch, submit }) {
             validationSchema={ !isContactIn ? infoSchema : contactSchema }
             onSubmit={handleSubmit}>
             {(formik) => {
+                const backClick = (e) => {
+                    setPage(page > 0 ? page - 1 : 0);
+                    setTimeout(() => formik.validateForm(), 300);
+                }
+
                 return (
                     <Form className='formStyle'>
                         {page !== 2 &&<>
@@ -111,7 +115,8 @@ function BookingForm({ availableTimes, dispatch, submit }) {
                                             dateChanged={dateChanged}
                                             occasions={occasions}
                                             tableTypes={tableTypes}
-                                            isCurrent={page === 0} />
+                                            isCurrent={page === 0}
+                                            formik={formik} />
                                     </div>
                                 </CSSTransition>
                                 <CSSTransition in={isContactIn} timeout={300} classNames="animRight" unmountOnExit>
@@ -120,14 +125,14 @@ function BookingForm({ availableTimes, dispatch, submit }) {
                                             <button className="backButton" type="button" title='Go back' onClick={backClick} disabled={page !== 1}>&lt;</button>
                                             <h3>Contact Details</h3>
                                         </span>
-                                        <ContactForm isCurrent={page === 1} formik={formik.values} />
+                                        <ContactForm isCurrent={page === 1} formik={formik} values={formik.values} />
                                     </div>
                                 </CSSTransition>
                             </div>
-                            <button className="yellowButton centered" style={{width: '300px'}} disabled={!(page < 2 && formik.dirty && formik.isValid) || isSubmitting}>
+                            <button className="yellowButton centered" style={{width: '300px'}} disabled={!(formik.dirty && formik.isValid) || isSubmitting}>
                                 {page === 1 ? "Submit Reservation" : "Next"}
                             </button>
-                            {isSubmitting && <div><Spinner /></div>}
+                            {isSubmitting && <Spinner style={{justifySelf: 'center'}} />}
                         </>}
                         {page === 2 && <ConfirmedBooking data={formData} wasSubmitSucessful={wasSubmitSucessful} />}
                     </Form>

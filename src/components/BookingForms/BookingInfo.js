@@ -1,9 +1,10 @@
 import { standardTime } from "../../utils/utils";
+import { useEffect } from "react";
 import FormField from "./FormField";
 import SelectFormField from "./SelectFormField";
 import TextAreaFormField from "./TextAreaFormField";
 
-function BookingInfo({availableTimes, dateChanged, occasions, tableTypes, isCurrent=true}) {
+function BookingInfo({availableTimes, dateChanged, occasions, tableTypes, isCurrent=true, formik}) {
     const timesOptionsList = availableTimes.map((t) => {
         return <option key={t.toString()} value={t}>{standardTime(t)}</option>;
     });
@@ -16,9 +17,15 @@ function BookingInfo({availableTimes, dateChanged, occasions, tableTypes, isCurr
         return <option key={tableType} value={tableType}>{tableType}</option>
     })
 
+    useEffect(() => {
+        if (formik) {
+            formik.setFieldValue("time", availableTimes[0]);
+        }
+    }, [availableTimes]);
+
     return (
         <>
-            <FormField name="date" type="date" label="Date" onValueChange={dateChanged} disabled={!isCurrent} />
+            <FormField autoFocus name="date" type="date" label="Date" onValueChange={dateChanged} disabled={!isCurrent} />
             <SelectFormField name="time" label="Time" disabled={!isCurrent}>
                 {timesOptionsList}
             </SelectFormField>

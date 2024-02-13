@@ -34,7 +34,7 @@ function BookingPage() {
           </div>
         </div>
       </header>
-      <main style={{ minWidth: '900px' }}>
+      <main id="formMain">
         <BookingForm
           submit={onSubmit}
           availableTimes={availableTimes}

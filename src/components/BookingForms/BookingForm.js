@@ -120,7 +120,7 @@ function BookingForm({ availableTimes, dispatch, submit }) {
                                             <button className="backButton" type="button" title='Go back' onClick={backClick} disabled={page !== 1}>&lt;</button>
                                             <h3>Contact Details</h3>
                                         </span>
-                                        <ContactForm isCurrent={page === 1} />
+                                        <ContactForm isCurrent={page === 1} formik={formik.values} />
                                     </div>
                                 </CSSTransition>
                             </div>

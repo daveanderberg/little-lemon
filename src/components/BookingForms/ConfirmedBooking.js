@@ -1,15 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { standardTime } from '../../utils/utils';
+import FieldData from './FieldData';
 import restImage from '../../assets/restaurant.jpg'
-
-const FieldData = ({name, value}) => {
-    return (
-        <div className="fieldBox" key={name}>
-            <div className='field'>{name}</div>
-            <div>{value}</div>
-        </div>
-    );
-}
 
 function ConfirmedBooking({data, wasSubmitSucessful}) {
     const navigate = useNavigate();
@@ -43,7 +35,7 @@ function ConfirmedBooking({data, wasSubmitSucessful}) {
                                     <p>{data.comments}</p>
                                 </>}
                         </div>
-                        <img src={restImage} alt="tables at Little Lemon" style={imgStyle} />
+                        <img id="confirmResImage" src={restImage} alt="tables at Little Lemon" style={imgStyle} />
                     </section>
                 </>) :
                 <>

@@ -258,6 +258,12 @@ main {
   #reserveTableButton {
     width: min-content;
   }
+
+  .resHeader {
+    height: min-content;
+    display: block;
+    padding: 0 25px;
+}
 }
 
 @media (max-width: 599px) {

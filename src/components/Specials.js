@@ -32,7 +32,7 @@ function Specials() {
     });
 
     return (
-        <section>
+        <section id="specials">
             <div className="specialsHeader">
                 <h2 id="specialsHeader">This weeks Specials</h2>
                 <h6 id="orderHeader">order for delivery!</h6>

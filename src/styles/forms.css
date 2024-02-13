@@ -1,6 +1,5 @@
 .formStyle {
     display: grid;
-    /*width: 18.5rem;*/
     gap: 20px;
     padding: 2rem 0;
 }
@@ -150,7 +149,7 @@ select::-ms-expand {
 .resConfirmDetails {
     display: grid;
     grid-template-areas: 'fields image';
-    padding: 1.5rem 2rem ;
+    padding: 1.5rem 2rem;
     border-radius: 16px;
     background: #495e57;
     color: #edefee;
@@ -165,10 +164,18 @@ select::-ms-expand {
     gap: 0.7rem;
 }
 
+#formMain {
+    min-width: 900px;
+}
+
+#resDetails {
+    display: none;
+}
+
 /**** ============================ Form Animation Styles ============================  ****/
 .animRight-enter {
     opacity: 0;
-    transform: translateX(0);
+    transform: translateX(340px);
 }
 
 .animRight-enter-active {
@@ -189,8 +196,13 @@ select::-ms-expand {
 
 .animRight-exit-active {
     opacity: 0;
-    transform: translateX(0);
+    transform: translateX(340px);
     transition: opacity 300ms, transform 300ms ease-in;
+}
+
+.animRight-exit-done {
+    opacity: 0;
+    transform: translateX(340px);
 }
 
 .animLeft-enter {
@@ -213,4 +225,84 @@ select::-ms-expand {
 .animLeft-exit-active {
     transform: translateX(0);
     transition: transform 300ms ease-in;
+}
+
+/**** ============================ Media Queries ============================  ****/
+
+@media (max-width: 936px) {
+    #confirmResImage {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .resHeader {
+        height: min-content;
+        display: block;
+    }
+
+    #formMain {
+        min-width: auto;
+    }
+}
+
+@media (max-width: 675px) {
+    #resDetails {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .animRight-enter {
+        opacity: 0;
+        transform: translateX(300px);
+    }
+
+    .animRight-enter-active {
+        opacity: 1;
+        transform: translateX(0);
+        transition: opacity 300ms, transform 300ms ease-out;
+    }
+
+    .animRight-enter-done {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+
+    .animRight-exit {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+
+    .animRight-exit-active {
+        opacity: 0;
+        transform: translateX(300px);
+        transition: opacity 300ms, transform 300ms ease-in;
+    }
+
+    .animLeft-enter {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .animLeft-enter-active {
+        opacity: 0.5;
+        transform: translateX(-340px);
+        transition: opacity 300ms, transform 300ms ease-out;
+    }
+
+    .animLeft-enter-done {
+        opacity: 0.5;
+        transform: translateX(-340px);
+    }
+
+    .animLeft-exit {
+        opacity: 0.5;
+        transform: translateX(-340px);
+    }
+
+    .animLeft-exit-active {
+        opacity: 1;
+        transform: translateX(0);
+        transition: opacity 300ms, transform 300ms ease-in;
+    }
 }

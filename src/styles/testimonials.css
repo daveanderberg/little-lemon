@@ -34,3 +34,14 @@
     text-align: center;
     margin-top: 10px;
 }
+
+@media (max-width: 767px) {
+    .testimonials>div {
+        flex-direction: column;
+    }
+
+    .testimonialCard {
+        width: auto;
+        margin: 10px 20px;
+    }
+}

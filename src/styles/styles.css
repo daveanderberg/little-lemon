@@ -21,50 +21,59 @@ html * {
   color: #333;
 }
 
+body {
+  min-width: 320px;
+}
+
 main {
   flex: 1;
 }
 
-nav {
+#nav {
   display: flex;
-  padding: 25px;
+  padding: 10px 25px;
   align-items: center;
   justify-content: center;
   color: #333;
 }
 
-nav li {
-  display: inline;
-  /*margin: 0 0 0 20px;*/
+#navList {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-nav li a:link {
+#nav li {
+  display: inline;
+}
+
+#nav>ul>li a:link {
   color: #333;
   text-decoration: none;
   background-color: none;
+  text-wrap: nowrap;
   padding: 10px 20px;
 }
 
-nav li a:visited {
+#nav>ul>li a:visited {
   color: #333;
   text-decoration: none;
 }
 
-nav li a:hover {
+#nav>ul>li a:hover {
   color: #edefee;
   background-color: #495e57;
   text-decoration: none;
   border-radius: 8px;
 }
 
-nav li a:active {
+#nav>ul>li a:active {
   color: #f4ce14;
   background-color: #495e57;
   text-decoration: none;
   border-radius: 8px;
 }
 
-nav li a.active {
+#nav>ul>li a.active {
   text-decoration: underline;
 }
 
@@ -92,8 +101,8 @@ h2 {
   font-weight: 300;
 }
 
-h2 .sub {
-  margin-top: -1.1rem;
+h2.sub {
+  line-height: 30pt;
 }
 
 h3 {
@@ -103,14 +112,20 @@ h3 {
   margin: 1.25rem 0;
 }
 
+h6 {
+  font-size: 20pt;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+
 .callOutText {
   font-size: 18pt;
   font-weight: 400;
 }
 
 header p {
-  margin-top: 2%;
-  margin-right: 30%;
+  max-width: 60%;
+
 }
 
 .headerDiv {
@@ -118,57 +133,19 @@ header p {
   margin: 0 auto;
   min-width: 480px;
   max-width: 800px;
-  grid-template-columns: 1fr 20rem;
+  padding: 20px 20px;
+  gap: 0 20px;
+  grid-template-columns: 1fr min-content;
+  grid-template-rows: min-content min-content 1fr min-content;
   grid-template-areas:
     "header image"
     "subheader image"
     "blurb image"
-    "button image";
-}
-
-.resBG {
-  background-image: url(../assets/restaurant.jpg);
-  background-repeat: no-repeat;
-  background-position: center 65%;
-  min-height: 176px;
-  color: #495e57;
-}
-
-.backButton {
-  height: 40px;
-  width: 40px;
-  display: inline-block;
-  border-radius: 20px;
-  font-size: 1.3rem;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 20px 0px;
-  background: #495e57;
-  border: 2px solid #edefee;
-  color: #edefee;
-}
-
-.backButton:hover {
-  background: #edefee;
-  color: #495e57;
-  border: 2px solid #495e57;
-}
-
-.backButton:active {
-  background: #edefee;
-  border: 2px solid #f4ce14;
-  color: #495e57;
-}
-
-.backButton:disabled {
-  background: #d9d9d9;
-  border: 2px solid #edefee;
-  color: #edefee;
-  cursor: default;
+    "button image"
 }
 
 .headerTextColumn {
-  margin: 20px 40px 20px 0;
+  margin: 20px 20px 0 0;
 }
 
 .headerImageDiv {
@@ -176,11 +153,20 @@ header p {
   height: 20rem;
   margin: 20px 0;
   overflow: hidden;
-  grid-area: "image";
+  grid-area: image;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#headerImage {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 16px;
+  object-fit: cover;
 }
 
 #reserveTableButton {
-  margin: 40px 0 20px;
+  max-width: 300px;
 }
 
 .yellowButton {
@@ -191,6 +177,7 @@ header p {
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
+  text-wrap: nowrap;
 }
 
 .yellowButton:hover {
@@ -209,4 +196,95 @@ header p {
 main {
   max-width: 900px;
   margin: 0 auto;
+}
+
+.svgFilter {
+  filter: invert(34%) sepia(27%) saturate(282%) hue-rotate(109deg) brightness(91%) contrast(88%);
+}
+
+.svgFilterLight {
+  filter: invert(99%) sepia(76%) saturate(928%) hue-rotate(194deg) brightness(114%) contrast(87%);
+}
+
+/***************============================== MEDIA QUERIES ==============================***************/
+ 
+@media (max-width: 954px) {
+  #logoLink img {
+    max-height: 44px;
+  }
+}
+
+@media (max-width: 767px) {
+  #navList {
+    display: none;
+  }
+
+  #nav {
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background:#edefee;
+    z-index: 11;
+    box-shadow: 2px 3px 5px rgba(0,0,0,0.3);
+  }
+
+  .headerDiv {
+    min-width: 320px;
+    padding: 0 25px 20px 25px;
+    height: 360px;
+    grid-template-columns: 1fr min-content;
+    grid-template-areas:
+    "header header"
+    "subheader image"
+    "blurb image"
+    "button image";
+  }
+
+  .headerDiv p {
+    max-width: 30ch;
+    align-self: stretch;
+  }
+
+  .headerImageDiv {
+    align-self: center;
+  }
+
+  .headerImageDiv,
+  #headerImage {
+    height: 13rem;
+    width: 13rem;
+  }
+
+  #reserveTableButton {
+    width: min-content;
+  }
+
+  .resHeader {
+    height: min-content;
+    display: block;
+    padding: 0 25px;
+}
+}
+
+@media (max-width: 599px) {
+  .headerImageDiv,
+  #headerImage {
+    height: 9.1rem;
+    width: 9.1rem;
+  }
+}
+
+@media (max-width: 419px) {
+  h1 {
+    font-size: 44pt;
+    line-height: 30pt;
+  }
+
+  h2 {
+    font-size: 32pt;
+  }
+
+  h2.sub {
+    line-height: 20pt;;
+  }
 }

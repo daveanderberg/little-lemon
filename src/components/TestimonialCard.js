@@ -8,7 +8,7 @@ function TestimonialCard ({rating, image, name, review}) {
 
     return (
         <article className="testimonialCard">
-            <div><img src={starImage} style={starStyle} alt="star"/><h5>{rating}</h5></div>
+            <div className="ratingDiv"><img src={starImage} style={starStyle} alt="star"/><h5>{rating}</h5></div>
             <div>
                 <img src={image} alt="reviewer portrait" style={{marginRight:'8px',}} />
                 <p style={{fontWeight: '600', alignSelf: 'end'}}>{name}</p>

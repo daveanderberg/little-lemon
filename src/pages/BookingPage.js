@@ -2,7 +2,6 @@ import '../styles/forms.css'
 import BookingForm from '../components/BookingForms/BookingForm';
 import { fetchAPI, submitAPI } from '../utils/fakeAPI';
 import { useReducer } from 'react';
-import useLocalStorage from '../hooks/useLocalStorage';
 
 function BookingPage() {
   const updateTimes = (state, action) => {
@@ -17,25 +16,29 @@ function BookingPage() {
   }
 
   const [availableTimes, availableTimesDispatch] = useReducer(updateTimes, initializeTimes());
-  const [formData, setFormData] = useLocalStorage("formData", null);
 
-  const onSubmit = (submittedFormData) => {
-    if (submitAPI(submittedFormData)) {
-      setFormData(submittedFormData);
+  const onSubmit = async (submittedFormData) => {
+    const result = await submitAPI(submittedFormData);
+    if (result) {
+      return true;
     }
+    return false;
   }
 
   return (
     <>
-      <header className="resBG">
-        <div className="headerDiv" />
+      <header>
+        <div className="headerDiv resHeader">
+          <div>
+            <h2>Book a Reservation</h2>
+          </div>
+        </div>
       </header>
-      <main style={{minWidth: '900px'}}>
+      <main id="formMain">
         <BookingForm
           submit={onSubmit}
           availableTimes={availableTimes}
-          dispatch={availableTimesDispatch}
-          setFormData={setFormData} />
+          dispatch={availableTimesDispatch} />
       </main>
     </>
   );

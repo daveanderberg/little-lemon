@@ -1,8 +1,5 @@
-/***=========================================== Forms ===========================================***/
-
 .formStyle {
     display: grid;
-    width: 18.5rem;
     gap: 20px;
     padding: 2rem 0;
 }
@@ -20,6 +17,7 @@
     padding: 8px 20px;
     background-color: white;
     width: 100%;
+    min-height: 39px;
 }
 
 .formField input[type="date"] {
@@ -81,4 +79,230 @@ select::-ms-expand {
     max-width: 65ch;
     padding: 0.5rem 0;
     text-wrap: wrap;
+}
+
+.subForm {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 1.2rem;
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+.disabled {
+    opacity: 65%;
+    pointer-events: none;
+}
+
+.backButton {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    background: #495e57;
+    border: 2px solid #edefee;
+    color: #edefee;
+}
+
+.backButton:hover {
+    background: #edefee;
+    color: #495e57;
+    border: 2px solid #495e57;
+}
+
+.backButton:active {
+    background: #edefee;
+    border: 2px solid #f4ce14;
+    color: #495e57;
+}
+
+.backButton:disabled {
+    background: #d9d9d9;
+    border: 2px solid #edefee;
+    color: #edefee;
+    cursor: default;
+}
+
+.resHeader h2 {
+    margin: 26px 0;
+    grid-template-areas: "header image";
+}
+
+.fieldBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.field {
+    font-weight: bolder;
+    margin-right: 0.5rem;
+}
+
+.resConfirmDetails {
+    display: grid;
+    grid-template-areas: 'fields image';
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    background: #495e57;
+    color: #edefee;
+    gap: 0.7rem;
+    margin-bottom: 40px;
+    min-width: 360px;
+}
+
+.resConfirmDetails>div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+#formMain {
+    min-width: 900px;
+}
+
+#resDetails {
+    display: none;
+}
+
+/**** ============================ Form Animation Styles ============================  ****/
+.animRight-enter {
+    opacity: 0;
+    transform: translateX(340px);
+}
+
+.animRight-enter-active {
+    opacity: 1;
+    transform: translateX(170px);
+    transition: opacity 300ms, transform 300ms ease-out;
+}
+
+.animRight-enter-done {
+    opacity: 1;
+    transform: translateX(170px);
+}
+
+.animRight-exit {
+    opacity: 1;
+    transform: translateX(170px);
+}
+
+.animRight-exit-active {
+    opacity: 0;
+    transform: translateX(340px);
+    transition: opacity 300ms, transform 300ms ease-in;
+}
+
+.animRight-exit-done {
+    opacity: 0;
+    transform: translateX(340px);
+}
+
+.animLeft-enter {
+    transform: translateX(0);
+}
+
+.animLeft-enter-active {
+    transform: translateX(-170px);
+    transition: transform 300ms ease-out;
+}
+
+.animLeft-enter-done {
+    transform: translateX(-170px);
+}
+
+.animLeft-exit {
+    transform: translateX(-170px);
+}
+
+.animLeft-exit-active {
+    transform: translateX(0);
+    transition: transform 300ms ease-in;
+}
+
+/**** ============================ Media Queries ============================  ****/
+
+@media (max-width: 936px) {
+    #confirmResImage {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .resHeader {
+        height: min-content;
+        display: block;
+    }
+
+    #formMain {
+        min-width: auto;
+    }
+}
+
+@media (max-width: 675px) {
+    #resDetails {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .animRight-enter {
+        opacity: 0;
+        transform: translateX(300px);
+    }
+
+    .animRight-enter-active {
+        opacity: 1;
+        transform: translateX(0);
+        transition: opacity 300ms, transform 300ms ease-out;
+    }
+
+    .animRight-enter-done {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+
+    .animRight-exit {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+
+    .animRight-exit-active {
+        opacity: 0;
+        transform: translateX(300px);
+        transition: opacity 300ms, transform 300ms ease-in;
+    }
+
+    .animLeft-enter {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .animLeft-enter-active {
+        opacity: 0.5;
+        transform: translateX(-340px);
+        transition: opacity 300ms, transform 300ms ease-out;
+    }
+
+    .animLeft-enter-done {
+        opacity: 0.5;
+        transform: translateX(-340px);
+    }
+
+    .animLeft-exit {
+        opacity: 0.5;
+        transform: translateX(-340px);
+    }
+
+    .animLeft-exit-active {
+        opacity: 1;
+        transform: translateX(0);
+        transition: opacity 300ms, transform 300ms ease-in;
+    }
 }

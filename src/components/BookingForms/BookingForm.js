@@ -1,32 +1,20 @@
 import * as Yup from 'yup';
 import { useEffect, useState } from 'react';
 import { fetchAPI } from '../../utils/fakeAPI.js';
-import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
+import { CSSTransition } from  'react-transition-group';
 import BookingInfo from './BookingInfo.js';
 import ContactForm from './ContactForm.js';
 import ConfirmedBooking from './ConfirmedBooking.js'
-
-const FormHeader = ({page}) => {
-    let formHeader = "Reservation Details";
-    if (page === 1)
-        formHeader = "Contact Details";
-    else if (page === 2)
-        formHeader = "Reservation Confirmation";
-
-    return (<h2>{formHeader}</h2>);
-}
-
-const SubmitButton = ({page, formik}) => {
-    let submitText = page === 1 ? "Submit Reservation" : "Next";
-
-    return (<button className="yellowButton" disabled={!(formik.dirty && formik.isValid)}>{submitText}</button>);
-}
+import Spinner from '../Spinner.js';
 
 function BookingForm({ availableTimes, dispatch, submit }) {
-    const navigate = useNavigate();
     const [date, setDate] = useState(new Date());
     const [page, setPage] = useState(0);
+    const [isContactIn, setIsContactIn] = useState(false);
+    const [wasSubmitSucessful, setWasSubmitSuccessful] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formData, setFormData] = useState();
 
     const occasions = ['None', 'Birthday', 'Engagement', 'Anniversary', 'Other'];
     const tableTypes = ['Indoor', 'Booth', 'Outside'];
@@ -56,8 +44,15 @@ function BookingForm({ availableTimes, dispatch, submit }) {
         fetchTimes(date);
     }, [date, dispatch]);
 
-    const handleSubmit = (values) => {
-        if (page < 2) {
+    // used to trigger section transistions.
+    useEffect(() => {
+        if (page === 1) {
+            setIsContactIn(true);
+        } else setIsContactIn(false);
+    }, [page, setIsContactIn])
+
+    const handleSubmit = async (values) => {
+        if (page < 1) {
             setPage(page + 1);
         } else {
             const formData = {
@@ -71,18 +66,20 @@ function BookingForm({ availableTimes, dispatch, submit }) {
                 lastName: values.lastName,
                 email: values.email,
                 phone: values.phone,
+                isOkToText: values.isOkToText,
             }
-            submit(formData);
+            setIsSubmitting(true);
+            const result = await submit(formData)
+            if (result) {
+                setFormData(formData);
+                setWasSubmitSuccessful(result);
+            }
+            setPage(page + 1);
         }
     }
 
-    const dateChanged = (e) => {
-        setDate(e.target.value);
-    }
-
-    const backClick = (e) => {
-        setPage(page > 0 ? page - 1 : 0);
-    }
+    const dateChanged = (e) => setDate(e.target.value);
+    const backClick = (e) => setPage(page > 0 ? page - 1 : 0);
 
     return (
         <Formik
@@ -99,23 +96,41 @@ function BookingForm({ availableTimes, dispatch, submit }) {
                 phone: '',
                 isOkToText: false,
             }}
-            validationSchema={page === 0 ? infoSchema : contactSchema}
+            validationSchema={ !isContactIn ? infoSchema : contactSchema }
             onSubmit={handleSubmit}>
             {(formik) => {
                 return (
-                    <>
-                        <span className='formHeader'>
-                            <button className="backButton" title='Go back' onClick={backClick} disabled={page !== 1}>&lt;</button>
-                            <FormHeader page={page} />
-                        </span>
-                        <Form className='formStyle'>
-                            {page === 0 && <BookingInfo availableTimes={availableTimes} dateChanged={dateChanged} occasions={occasions} tableTypes={tableTypes} />}
-                            {page === 1 && <ContactForm formik={formik} />}
-                            {page === 2 && <ConfirmedBooking formik={formik} />}
-                            {page !== 2 && <SubmitButton page={page} formik={formik} />}
-                            {page === 2 && <button className='yellowButton' type='button' onClick={() => navigate("/")}>Return to Home</button>}
-                        </Form>
-                    </>
+                    <Form className='formStyle'>
+                        {page !== 2 &&<>
+                            <div style={{display: 'grid', gridTemplate: '1fr / 1fr', alignItems: 'stretch', justifyItems: 'center'}}>
+                                <CSSTransition in={isContactIn} timeout={300} classNames="animLeft">
+                                    <div className={page === 0 ? "subForm" : "subForm disabled"} style={{gridColumn: '1 / 1', gridRow: '1 / 1'}}>
+                                        <h3>Reservation Details</h3>
+                                        <BookingInfo
+                                            availableTimes={availableTimes}
+                                            dateChanged={dateChanged}
+                                            occasions={occasions}
+                                            tableTypes={tableTypes}
+                                            isCurrent={page === 0} />
+                                    </div>
+                                </CSSTransition>
+                                <CSSTransition in={isContactIn} timeout={300} classNames="animRight" unmountOnExit>
+                                    <div className={`subForm ${page !== 1 ? "disabled" : ""}`} style={{gridColumn: '1 / 1', gridRow: '1 / 1', zIndex: '10'}}>
+                                        <span className='formHeader'>
+                                            <button className="backButton" type="button" title='Go back' onClick={backClick} disabled={page !== 1}>&lt;</button>
+                                            <h3>Contact Details</h3>
+                                        </span>
+                                        <ContactForm isCurrent={page === 1} formik={formik.values} />
+                                    </div>
+                                </CSSTransition>
+                            </div>
+                            <button className="yellowButton centered" style={{width: '300px'}} disabled={!(page < 2 && formik.dirty && formik.isValid) || isSubmitting}>
+                                {page === 1 ? "Submit Reservation" : "Next"}
+                            </button>
+                            {isSubmitting && <div><Spinner /></div>}
+                        </>}
+                        {page === 2 && <ConfirmedBooking data={formData} wasSubmitSucessful={wasSubmitSucessful} />}
+                    </Form>
                 )
             }}
         </Formik>

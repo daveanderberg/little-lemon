@@ -7,6 +7,7 @@ import OrderOnline from './pages/OrderOnline';
 import Login from './pages/Login';
 import NoPage from './pages/NoPage';
 import BookingPage from "./pages/BookingPage";
+import Cart from "./pages/Cart"
 import './styles/styles.css'
 
 window.onbeforeunload = () => {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/reservations" element={<BookingPage />} />
         <Route path="/order" element={<OrderOnline />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cart" element={<Cart/>} />
         <Route path="*" element={<NoPage />} />
       </Routes>
       <Footer />

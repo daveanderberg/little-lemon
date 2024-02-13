@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { standardTime } from '../../utils/utils';
+import { HashLink } from "react-router-hash-link";
 import FieldData from './FieldData';
 import restImage from '../../assets/restaurant.jpg'
 

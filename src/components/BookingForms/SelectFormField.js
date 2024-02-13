@@ -1,6 +1,6 @@
 import { useField } from "formik";
 
-function SelectFormField({label, useFormikField=true, ...props}) {
+function SelectFormField({label, ...props}) {
     const [field, meta] = useField(props);
     return (
         <div className="formField">

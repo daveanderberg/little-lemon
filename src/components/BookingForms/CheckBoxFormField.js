@@ -5,7 +5,7 @@ const CheckBoxFormField = ({ label, ...props }) => {
     return (
         <div className="formCheckBox">
             <label>
-                <input {...field} {...props} type='checkbox' />
+                <input id={props.id || props.name} {...field} {...props} type='checkbox' />
                 {label}
             </label>
             {meta.touched && meta.error ? (<div className="error">{meta.error}</div>) : null}

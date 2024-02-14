@@ -8,7 +8,7 @@ import ContactForm from './ContactForm.js';
 import ConfirmedBooking from './ConfirmedBooking.js'
 import Spinner from '../Spinner.js';
 
-function BookingForm({ availableTimes, dispatch, submit }) {
+function BookingForm({ availableTimes, dispatch, submit, initPage = 0 }) {
     const occasions = ['None', 'Birthday', 'Engagement', 'Anniversary', 'Other'];
     const tableTypes = ['Indoor', 'Booth', 'Outside'];
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -28,7 +28,7 @@ function BookingForm({ availableTimes, dispatch, submit }) {
     });
 
     const [date, setDate] = useState(new Date());
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(initPage);
     const [isContactIn, setIsContactIn] = useState(false);
     const [wasSubmitSucessful, setWasSubmitSuccessful] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,7 +38,9 @@ function BookingForm({ availableTimes, dispatch, submit }) {
         const fetchTimes = (newDate) => {
             // using spoofed api since real one is not up
             let newTimes = fetchAPI(new Date(newDate));
-            dispatch({ type: 'dateChanged', newTimes: newTimes });
+            if (dispatch) {
+                dispatch({ type: 'dateChanged', newTimes: newTimes });
+            }
         }
 
         fetchTimes(date);
@@ -129,7 +131,7 @@ function BookingForm({ availableTimes, dispatch, submit }) {
                                     </div>
                                 </CSSTransition>
                             </div>
-                            <button className="yellowButton centered" style={{width: '300px'}} disabled={!(formik.dirty && formik.isValid) || isSubmitting}>
+                            <button data-testid="submitButton" className="yellowButton centered" style={{width: '300px'}} disabled={!(formik.dirty && formik.isValid) || isSubmitting}>
                                 {page === 1 ? "Submit Reservation" : "Next"}
                             </button>
                             {isSubmitting && <Spinner style={{justifySelf: 'center'}} />}

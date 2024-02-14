@@ -21,6 +21,7 @@ function App() {
 
   return (
     <>
+    <div>{true}</div>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -6,7 +6,7 @@ function TextAreaFormField({label, ...props}) {
     return (
         <div className="formField">
             <label htmlFor={props.id || props.name}>{label}</label>
-            <textarea {...field} {...props}></textarea>
+            <textarea id={props.id || props.name} {...field} {...props}></textarea>
             {meta.touched && meta.error ? (<div className="error">{meta.error}</div>) : null}
         </div>
     );

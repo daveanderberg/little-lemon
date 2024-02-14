@@ -11,7 +11,7 @@ function FormField ({label, onValueChange, ...props}) {
     return (
         <div className="formField">
             <label htmlFor={props.id || props.name}>{label}</label>
-            <input{...field} {...props} onChange={change} />
+            <input id={props.id || props.name} {...field} {...props} onChange={change} />
             {meta.touched && meta.error ? (<div className="error">{meta.error}</div>) : null}
         </div>
     );

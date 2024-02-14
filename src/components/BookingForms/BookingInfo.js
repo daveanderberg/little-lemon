@@ -25,11 +25,11 @@ function BookingInfo({availableTimes, dateChanged, occasions, tableTypes, isCurr
 
     return (
         <>
-            <FormField autoFocus name="date" type="date" label="Date" onValueChange={dateChanged} disabled={!isCurrent} />
-            <SelectFormField name="time" label="Time" disabled={!isCurrent}>
+            <FormField autoFocus data-testid='date' name="date" type="date" label="Date" onValueChange={dateChanged} disabled={!isCurrent} />
+            <SelectFormField data-testid='time' name="time" label="Time" disabled={!isCurrent}>
                 {timesOptionsList}
             </SelectFormField>
-            <FormField name="partySize" type="number" min='1' max='10' label="Size of Party" disabled={!isCurrent} />
+            <FormField data-testid='partySize' name="partySize" type="number" min='1' max='10' label="Size of Party" disabled={!isCurrent} />
             <SelectFormField name="occasion" label="Occasion" disabled={!isCurrent}>
                 {occasionsList}
             </SelectFormField>

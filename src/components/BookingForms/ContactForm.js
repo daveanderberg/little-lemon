@@ -22,7 +22,7 @@ function ContactForm({ isCurrent = true, formik, values }) {
                         <p>{values.comments}</p>
                     </>}
             </div>
-            <FormField autoFocus name="firstName" type="text" label="First Name" disabled={!isCurrent} />
+            <FormField data-testid='firstName' autoFocus name="firstName" type="text" label="First Name" disabled={!isCurrent} />
             <FormField name="lastName" type="text" label="Last Name" disabled={!isCurrent} />
             <FormField name="email" type="email" label="Email" disabled={!isCurrent} />
             <FormField name="phone" type="tel" label="Phone Number" disabled={!isCurrent} />

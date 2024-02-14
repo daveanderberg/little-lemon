@@ -6,8 +6,8 @@ function SelectFormField({label, ...props}) {
         <div className="formField">
             <label htmlFor={props.id || props.name}>{label}</label>
             <div className="formSelect">
-                <select {...field} {...props} />
-                <span class="focus"></span>
+                <select id={props.id || props.name} {...field} {...props} />
+                <span className="focus"></span>
             </div>
             {meta.touched && meta.error ? (<div className="error">{meta.error}</div>) : null}
         </div>
